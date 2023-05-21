@@ -1,2 +1,5 @@
 # Project exclude paths
 /out/
+/.idea/vcs.xml
+/.idea/sonarlint/securityhotspotstore/1/0/1031470367530ca0039b7936f75f059a176f8140
+/.idea/sonarlint/issuestore/1/0/1031470367530ca0039b7936f75f059a176f8140
