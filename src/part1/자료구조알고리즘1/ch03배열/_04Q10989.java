@@ -1,14 +1,54 @@
-package fast_reader;
+package part1.자료구조알고리즘1.ch03배열;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class FastReaderTemplate {
+public class _04Q10989 {
 
     static StringBuilder sb = new StringBuilder();
+    static FastReader sc = new FastReader();
+
+    static int N ;
+    static int[] arr;
 
     public static void main(String[] args) {
+        N = sc.nextInt();
 
+
+//        solve1();
+
+        solve2();
+
+        System.out.println(sb.toString());
+    }
+
+    private static void solve1() {
+        arr = new int[N];
+        for(int i=0; i<N; ++i){
+            arr[i] = sc.nextInt();
+        }
+
+        Arrays.sort(arr);
+
+        for(int i=0; i<arr.length; ++i){
+            sb.append(arr[i]).append("\n");
+        }
+    }
+
+    private static void solve2(){
+        int[] cnt = new int[10001];
+        for(int i=0; i<N; ++i){
+            ++cnt[sc.nextInt()];
+        }
+        for(int i=1; i<=10000; ++i){
+//            for(int j=1; j<=cnt[i]; ++j){
+//                sb.append(i).append("\n");
+//            }
+            while(cnt[i]-->0){//이거만큼 반복해라
+                sb.append(i).append("\n");
+            }
+        }
     }
 
     static class FastReader {
@@ -59,11 +99,9 @@ public class FastReaderTemplate {
             return str;
         }
 
-        void write(String source) throws IOException { //BufferedWriter 보다 StringBuilder 가 더 빠르다고 하는것 같음
+        void write(String source) throws IOException {
             bw.write(source);
-//            bw.flush();
+            bw.flush();
         }
-        //flush 는 write 를 여러번 하고 나중에 한번만 해주면됨
-        //write 은 기본적으로 String or int 를 받기 때문에 개행문자는 스트링으로해줘야함
     }
 }
