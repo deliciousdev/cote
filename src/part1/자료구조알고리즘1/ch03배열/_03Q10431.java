@@ -13,7 +13,7 @@ public class _03Q10431 {
 
     static int p; //테스트케이스수
     static int T; //케이스번호
-    static int N=20;
+    static int N=7;
     static int[] arr= new int[N];
     static int ans;
     public static void main(String[] args) {

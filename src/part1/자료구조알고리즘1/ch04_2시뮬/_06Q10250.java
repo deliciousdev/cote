@@ -1,48 +1,54 @@
-package part1.자료구조알고리즘1.ch04완전탐색_시뮬;
+package part1.자료구조알고리즘1.ch04_2시뮬;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class _04Q11068 {
+public class _06Q10250 {
 
     static StringBuilder sb = new StringBuilder();
     static FastReader sc = new FastReader();
-    static StringBuilder ans = new StringBuilder();
     static int T;
-    static int X;
-    static char[] result= new char[21];
+    static int H,W,N;//층,방,몇번째손님
 
     public static void main(String[] args) {
-        T = sc.nextInt();
 
+        T=sc.nextInt();
         while(T-->0){
-            X = sc.nextInt();
-            boolean isPalindrome=true;
+            H = sc.nextInt();
+            W = sc.nextInt();
+            N = sc.nextInt();
 
-            for(int i=2; i<=64; ++i){
-                sb.setLength(0);
-                int length=0;
-                int temp=X;
-                while(temp>0){
-
-                    result[length++]=(char)(temp%i);//String 으로 할려고 하면 자동으로 형변환 되어서 잘 안되는것 같음
-                    temp/=i;
-                }
-                isPalindrome =true;
-                for(int j=0; j<=(length+1)/2; ++j){
-                    if (result[j] != result[length - 1 - j]) {
-                        isPalindrome=false;
-                        break;
-                    }
-                }
-                if(isPalindrome) break;
-            }
-            ans.append(isPalindrome ? "1" : "0").append("\n");
+            int floor = calcFloor(H, N);
+            int roomNUmber = calcRoomNUmber(H, N);
+            sb.append(convertToString(floor, roomNUmber)).append("\n");
         }
-
-        System.out.println(ans.toString());
+        System.out.println(sb.toString());
     }
 
+    public static int calcFloor(int H, int N){
+        int temp = N%H;
+        if(temp==0){
+            return H;
+        }
+        return temp;
+    }
+
+    public static int calcRoomNUmber(int H, int N){
+        if(N%H==0){
+            return N/H;
+        }
+        return N/H+1;
+    }
+
+    public static String convertToString(int floor, int roomNumber){
+        String f = String.valueOf(floor);
+        String rm = String.valueOf(roomNumber);
+        if(roomNumber>=1 && roomNumber<=9){
+            rm = "0" + String.valueOf(roomNumber);
+        }
+        return f+rm;
+
+    }
     static class FastReader {
         BufferedReader br;
 
@@ -98,5 +104,4 @@ public class _04Q11068 {
         //flush 는 write 를 여러번 하고 나중에 한번만 해주면됨
         //write 은 기본적으로 String or int 를 받기 때문에 개행문자는 스트링으로해줘야함
     }
-
 }

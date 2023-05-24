@@ -1,32 +1,88 @@
-package part1.자료구조알고리즘1.ch04완전탐색_시뮬;
+package part1.자료구조알고리즘1.ch04_1완전탐색;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _03Q11005 {
+public class _01Q2309 {
 
     static StringBuilder sb = new StringBuilder();
     static FastReader sc = new FastReader();
 
-    static char[] num = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-    static int N, B;
+    static int N =9;
+    static Integer[] arr;
+    static int[] result;
+    static boolean find;
+    static int input_sum=0;
 
     public static void main(String[] args) {
-        N = sc.nextInt();
-        B = sc.nextInt();
+        init();
+//        Arrays.sort(arr);
+//        recurs(0,0,-1);
 
-        int length = 0;
-        while (N > 0) {
-            ++length;
-            sb.append(num[N % B]);
-            N/=B;
-        }
-        String temp = sb.toString();
-        sb.setLength(0);
-        for(int i = length-1; i>=0; --i){
-            sb.append(temp.charAt(i));
-        }
+//        Arrays.sort(arr, Collections.reverseOrder());
+        Arrays.sort(arr);
+        complementary();
+
         System.out.println(sb.toString());
+
+    }
+
+    static void recurs(int sum, int depth, int select) {
+        if(find) return ;
+
+        //탐색끝
+        if (depth >= 7) {
+            if(sum!=100){
+                return ;
+            }
+            find= true;
+            for(int i=0; i<7; ++i){
+                sb.append(result[i]).append("\n");
+            }
+
+            return;
+        }
+
+        //탐색
+        for(int i=select+1; i<arr.length; ++i){
+
+            if(sum+arr[i]<=100){
+                result[depth]=arr[i];
+                recurs(sum+arr[i],depth+1,i);
+            }
+        }
+
+    }
+
+    static void complementary(){
+        int i=0;
+        int j=0;
+        Loop1:
+        for(; i<N; ++i){
+            for(j=i+1; j<N; ++j){
+
+                if (input_sum - (arr[i] + arr[j]) == 100) {
+
+                    break Loop1;
+                }
+            }
+        }
+        for(int k=0; k<N; ++k){
+            if( k ==i || k== j ) continue;
+
+            sb.append(arr[k]).append("\n");
+        }
+    }
+
+    static void init(){
+        arr = new Integer[N];
+        for(int i=0; i<N; ++i){
+            arr[i] = sc.nextInt();
+            input_sum+=arr[i];
+        }
+        result = new int[7];
+
     }
 
     static class FastReader {

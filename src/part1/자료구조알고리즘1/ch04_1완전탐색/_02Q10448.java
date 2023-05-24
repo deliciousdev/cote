@@ -1,4 +1,4 @@
-package part1.자료구조알고리즘1.ch04완전탐색_시뮬;
+package part1.자료구조알고리즘1.ch04_1완전탐색;
 
 import java.io.*;
 import java.util.StringTokenizer;
