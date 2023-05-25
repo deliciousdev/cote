@@ -18,12 +18,18 @@ public class _06Q10250 {
             W = sc.nextInt();
             N = sc.nextInt();
 
-            int floor = calcFloor(H, N);
-            int roomNUmber = calcRoomNUmber(H, N);
-            sb.append(convertToString(floor, roomNUmber)).append("\n");
+//            int floor = calcFloor(H, N);
+//            int roomNumber = calcRoomNumber(H, N);
+
+            int floor = calcFloor2(H, N);
+            int roomNumber = calcRoomNumber2(H, N);
+//            sb.append(convertToString(floor, roomNumber)).append("\n");
+            sb.append(String.format("%d%02d\n", floor, roomNumber));
         }
         System.out.println(sb.toString());
+
     }
+
 
     public static int calcFloor(int H, int N){
         int temp = N%H;
@@ -33,14 +39,22 @@ public class _06Q10250 {
         return temp;
     }
 
-    public static int calcRoomNUmber(int H, int N){
+    public static int calcFloor2(int H, int N){
+        return (N - 1) % H + 1;
+    }
+
+    public static int calcRoomNumber(int H, int N){
         if(N%H==0){
             return N/H;
         }
         return N/H+1;
     }
 
-    public static String convertToString(int floor, int roomNumber){
+    public static int calcRoomNumber2(int H, int N){
+        return (N-1)/H +1;
+    }
+
+    public static String convertToString(int floor, int roomNumber){//formatting 을 이용하면 간단함
         String f = String.valueOf(floor);
         String rm = String.valueOf(roomNumber);
         if(roomNumber>=1 && roomNumber<=9){
