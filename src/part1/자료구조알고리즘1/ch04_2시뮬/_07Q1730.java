@@ -31,8 +31,8 @@ public class _07Q1730 {
             move(commands[i]);
         }
 
-        if (commandBuffer[0]+commandBuffer[1]!=0 && map[currentRow][currentCol] != 43) {//'+' 아닐때 , 모든 명령이 무시 됐을때를 고려해줘야함
-            map[currentRow][currentCol]=getIcon(commandBuffer[(bufferIndex-1)%2]);
+        if (commandBuffer[0] + commandBuffer[1] != 0 && map[currentRow][currentCol] != 43) {//'+' 아닐때 , 모든 명령이 무시 됐을때를 고려해줘야함
+            map[currentRow][currentCol] = getIcon(commandBuffer[(bufferIndex - 1) % 2]);
         }
 
         print();
@@ -40,8 +40,8 @@ public class _07Q1730 {
     }
 
     private static void print() {
-        for(int i=0; i<N; ++i){
-            for(int j=0; j<N; ++j){
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
                 sb.append(map[i][j]);
             }
             sb.append("\n");
@@ -50,17 +50,21 @@ public class _07Q1730 {
         System.out.println(sb.toString());
     }
 
-    public static char getIcon(char command){
+    public static char getIcon(char command) {
         char result;
         switch (command) {
             case 'D':
-            case 'U' :result = 124; break;
+            case 'U':
+                result = 124;
+                break;
 
-            default : result = 45;
+            default:
+                result = 45;
 
         }
         return result;
     }
+
     public static void init() {
         commandHash.put('D', 1);
         commandHash.put('U', 2);
@@ -96,35 +100,48 @@ public class _07Q1730 {
 
         Integer c1 = commandHash.get(commandBuffer[0]);
         Integer c2 = commandHash.get(commandBuffer[1]);
-
         char result;
-        if( c1 ==null || c2 ==null){
-            if(c1!=null){
-                result = getIcon(commandBuffer[0]);
+        if (map[currentRow][currentCol] == 46) {//.
+
+
+            if (c1 == null || c2 == null) {
+                if (c1 != null) {
+                    result = getIcon(commandBuffer[0]);
+                } else if (c2 != null) {
+                    result = getIcon(commandBuffer[1]);
+                } else {
+                    return;
+                }
+                map[currentRow][currentCol] = result;
+                return ;
             }
-            else if(c2!=null){
-                result = getIcon(commandBuffer[1]);
-            }else{
-                return;
+
+
+            else if (c1 * c2 < 0) {// (U,D) x (L,R)
+                result = 43;
+            }
+            else {
+                if (c1 + c2 > 0) { //U x U , D x D , U x D
+                    result = 124;
+                } else { // L x L , R x R , L x R
+                    result = 45;
+                }
             }
             map[currentRow][currentCol] = result;
-            return ;
+            return;
         }
 
-
-        if (c1 * c2 < 0) {// (U,D) x (L,R)
-            result = 43;
-        }
-         else {
-            if (c1 + c2 > 0) { //U x U , D x D , U x D
-                result = 124;
-            }
-            else { // L x L , R x R , L x R
-                result = 45;
+        else if (map[currentRow][currentCol] == 124) {//|
+            if (c1 != null && c1 == 45 || c2 != null && c2 == 45) {
+                map[currentRow][currentCol] = '+';
             }
         }
 
-        map[currentRow][currentCol] = result;
+        else if (map[currentRow][currentCol] == 45) {//-
+            if(c1!=null && c1==124 || c2 != null && c2 ==124){
+                map[currentRow][currentCol] = '+';
+            }
+        }
 
     }
 
