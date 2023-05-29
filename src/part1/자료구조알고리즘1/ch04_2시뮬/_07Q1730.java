@@ -113,14 +113,13 @@ public class _07Q1730 {
                     return;
                 }
                 map[currentRow][currentCol] = result;
-                return ;
+                return;
             }
 
 
-            else if (c1 * c2 < 0) {// (U,D) x (L,R)
+            if (c1 * c2 < 0) {// (U,D) x (L,R)
                 result = 43;
-            }
-            else {
+            } else {
                 if (c1 + c2 > 0) { //U x U , D x D , U x D
                     result = 124;
                 } else { // L x L , R x R , L x R
@@ -129,16 +128,14 @@ public class _07Q1730 {
             }
             map[currentRow][currentCol] = result;
             return;
-        }
-
-        else if (map[currentRow][currentCol] == 124) {//|
-            if (c1 != null && c1 == 45 || c2 != null && c2 == 45) {
+        } else if (map[currentRow][currentCol] == 124) {//|
+            if(c1==null && c2 ==null) return ;
+            if (c1 != null && c1 < 0 || c2 != null && c2 < 0) {
                 map[currentRow][currentCol] = '+';
             }
-        }
-
-        else if (map[currentRow][currentCol] == 45) {//-
-            if(c1!=null && c1==124 || c2 != null && c2 ==124){
+        } else if (map[currentRow][currentCol] == 45) {//-
+            if(c1==null && c2 ==null) return ;
+            if (c1 != null && c1 > 0 || c2 != null && c2 > 0) {
                 map[currentRow][currentCol] = '+';
             }
         }
