@@ -3,7 +3,7 @@ package part1.자료구조알고리즘1.ch04_2시뮬;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class p03Q2231 {
+public class P03Q2231 {
 
     static FastReader sc= new FastReader();
     static StringBuilder sb = new StringBuilder();
