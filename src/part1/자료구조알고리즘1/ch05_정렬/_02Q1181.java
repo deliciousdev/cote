@@ -21,10 +21,11 @@ public class _02Q1181 {
         init2();
 
 //        arr.sort(new MyComparator());
-        Arrays.sort(arr2,new MyComparator());
+        Arrays.sort(arr2,new MyComparator()); //Comparator 안넣어주면 기본으로 사전순
 
 //        print();
-        print2();
+//        print2();
+        print3();
     }
 
     static class MyComparator implements Comparator<String> {
@@ -58,6 +59,18 @@ public class _02Q1181 {
         }
         System.out.println(sb.toString());
     }
+
+    static void print3(){ //정렬후 중복 제거하면서 출력 하는 코드
+        StringBuilder sb = new StringBuilder();
+        sb.append(arr2[0]).append("\n");
+        for(int i=1; i<arr2.length; ++i){
+            if(!arr2[i].equals(arr2[i-1])) {
+                sb.append(arr2[i]).append("\n");
+            }
+        }
+        System.out.println(sb.toString());
+    }
+
     static void init(){
         N = sc.nextInt();
         arr = new ArrayList<>();
@@ -77,7 +90,6 @@ public class _02Q1181 {
             arr2[i]=sc.next();
         }
     }
-
 
     static class FastReader{
         BufferedReader br;
