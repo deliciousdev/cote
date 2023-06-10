@@ -5,18 +5,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * 나는 중복을 제거 해준후 정렬을 했는데,
+ * 중복이 있는상태에서 정렬을 하면 중복되는것들이 모여지므로 중복을 제외해주기 더 편리함. : 출력 : 시간단축이 엄청됨.
+ */
 public class _02Q1181 {
 
     static FastReader sc = new FastReader();
     static int N;
     static List<String> arr;
+    static String[] arr2;
 
     public static void main(String[] args) {
-        init();
+//        init();
+        init2();
 
-        arr.sort(new MyComparator());
+//        arr.sort(new MyComparator());
+        Arrays.sort(arr2,new MyComparator());
 
-        print();
+//        print();
+        print2();
     }
 
     static class MyComparator implements Comparator<String> {
@@ -27,7 +35,7 @@ public class _02Q1181 {
             if (o1.length()!=o2.length()){
                 return o1.length() - o2.length();//길이에 대해서 오름차순
             }
-            return o1.compareTo(o2); //사전순
+            return o1.compareTo(o2); //사전순 : String 을 사전순으로 비교할려면 String 전체를 탐새 해야함. 이 부분대문에 전체 시간 복잡도 : L * NlogN
         }
     }
 
@@ -35,6 +43,18 @@ public class _02Q1181 {
         StringBuilder sb = new StringBuilder();
         for(int i=0; i<arr.size(); ++i){
             sb.append(arr.get(i)).append("\n");
+        }
+        System.out.println(sb.toString());
+    }
+    static void print2(){
+        StringBuilder sb = new StringBuilder();
+        String current = arr2[0];
+        sb.append(current).append("\n");
+        for(int i=1; i<arr2.length; ++i){
+            if(current.equals(arr2[i])) continue;
+
+            current=arr2[i];
+            sb.append(current).append("\n");
         }
         System.out.println(sb.toString());
     }
@@ -50,6 +70,14 @@ public class _02Q1181 {
             arr.add(temp);
         }
     }
+    static void init2(){
+        N= sc.nextInt();
+        arr2= new String[N];
+        for(int i=0; i<N; ++i){
+            arr2[i]=sc.next();
+        }
+    }
+
 
     static class FastReader{
         BufferedReader br;
