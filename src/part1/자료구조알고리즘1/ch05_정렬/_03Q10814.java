@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * Comparator 의 arg 로 배열도 들어 올 수 있음
+ */
 public class _03Q10814 {
 
 
@@ -49,10 +52,11 @@ public class _03Q10814 {
 
         @Override
         public int compareTo(User o) {
-            if(this.age==o.age){
+            if(this.age==o.age){ //굳이 안해도됨. 아래로직에서 포함되어있음
                 return 0;
             }
-            return Integer.compare(this.age, o.age);
+//            return Integer.compare(this.age, o.age);
+            return Integer.valueOf(this.age).compareTo(o.age);
         }
     }
 
