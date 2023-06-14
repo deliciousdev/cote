@@ -4,6 +4,9 @@ package part1.자료구조알고리즘1.ch05_정렬;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 입력을 받으면서 Map 으로 중복 데이터들의 개수를 카운팅함
+ */
 public class _05Q1302 {
 
     static FastReader sc = new FastReader();
@@ -18,19 +21,18 @@ public class _05Q1302 {
         int n= N;
         while(n-->0){
             String bookName = sc.next();
-            Integer cnt = books.get(bookName);
-            if (cnt==null) {
-                books.put(bookName, 1);
-            }
-            else {
-                books.put(bookName, cnt + 1);
-            }
+            books.merge(bookName,1,Integer::sum);
+//            books.put(bookName,books.getOrDefault(bookName,0)+1);
         }
 
         int cntMx=Integer.MIN_VALUE;
         String ans="";
         for (String bookName : books.keySet()) {
             int cnt = books.get(bookName);
+//        for(Map.Entry<String,Integer> bookData : books.entrySet()){
+//            String bookName = bookData.getKey();
+//            int cnt = bookData.getValue();
+
             if(cntMx<cnt){
                 cntMx=cnt;
                 ans=bookName;

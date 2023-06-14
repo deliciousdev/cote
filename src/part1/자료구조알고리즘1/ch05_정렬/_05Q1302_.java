@@ -4,6 +4,9 @@ package part1.자료구조알고리즘1.ch05_정렬;
 import java.io.*;
 import java.util.*;
 
+/**
+ * 데이터를 정렬한후 그룹핑하면 데이터를 O(N) 으로 카운팅 할 수 있음
+ */
 public class _05Q1302_ {
 
     static FastReader sc = new FastReader();

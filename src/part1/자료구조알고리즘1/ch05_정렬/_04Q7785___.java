@@ -40,7 +40,7 @@ public class _04Q7785___ {
     }
 
     static void print(){
-        String[] names = presentPeople.toArray(new String[presentPeople.size()]);
+        String[] names = presentPeople.toArray(new String[0]);
         for(int i=0; i<names.length; ++i){
             sb.append(names[i]).append("\n");
         }

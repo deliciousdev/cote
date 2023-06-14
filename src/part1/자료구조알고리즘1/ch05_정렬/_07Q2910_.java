@@ -3,6 +3,11 @@ package part1.자료구조알고리즘1.ch05_정렬;
 import java.io.*;
 import java.util.*;
 
+/**
+ * 1. 중복이 제거되어있는 배열을 빈도수대로 정렬 한후, 빈도수 대로 다시 복원 시키기
+ * 2. 중복되는 데이터를 그대로 받는데, 첫번째 나타난 인덱스를 기록하여, 정렬할때 빈도수와 첫번째 나타난 인덱스를 반영하기
+ * 3. 입력을 받는 original 배열을 두고, original배열을 카피한 배열을 정렬 하여 압축 좌표를 구한다.  보존되어있던 origianl 배열을 통해 원래 순서에 맞는 압축좌표를 출력.
+ */
 public class _07Q2910_ {
 
     static FastReader sc = new FastReader();
