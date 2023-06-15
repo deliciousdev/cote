@@ -24,8 +24,6 @@ public class _03Q10814_ {
         Arrays.sort(arr,new MyComparator());
 
         print();
-
-
     }
 
     static void init(){
