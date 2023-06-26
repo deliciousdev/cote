@@ -25,9 +25,10 @@ public class _04Q2470 {
     static int N;
 
     public static void main(String[] args){
-//        solve1();//432ms
-//        solve2();//448ms
-        solve3();//600ms
+//        solve1();//432ms : 강의 용
+//        solve2();//448ms : 내가만든 가장 가까운값 찾기
+        solve3();//600ms : TreeSet
+        //solve4(); //lowerBound , upperBound 로 해보기
     }
 
     static void solve1(){
