@@ -37,8 +37,8 @@ public class _09Q15663 {
     }
 
     public static void main(String[] args){
-//        solve1(); //TreeSet 을 이용한 중복제거, 정렬
-        solve2(); //직접 중복고려, 정렬
+//        solve1(); //TreeSet 을 이용한 중복제거, 정렬 :  1156 ms
+        solve2(); //직접 중복고려, 정렬 : 192 ms
     }
 
     static void solve1(){
@@ -101,28 +101,7 @@ public class _09Q15663 {
         System.out.print(sb.toString().trim());
     }
 
-    static void rec_func2(int k){
-        if(k==M+1){
-            for(int i=1; i<result.length; ++i){
-                sb.append(result[i]).append(" ");
-            }
-            sb.append("\n");
-
-            return;
-        }
-
-        for(int i=1; i<=N; ++i){
-            if(result[k]==arr[i]) continue;
-            if(used[i]) continue;
-
-            used[i]=true;
-            result[k]=arr[i];
-            rec_func2(k+1);
-
-            used[i]=false;
-        }
-    }
-
+    //199 ->919 에서  199 의 맨 마지막이 9 여서 91다음 단계를 선택할때 9를 선택할 수 없음
 //    static void rec_func2(int k){
 //        if(k==M+1){
 //            for(int i=1; i<result.length; ++i){
@@ -134,19 +113,43 @@ public class _09Q15663 {
 //        }
 //
 //        for(int i=1; i<=N; ++i){
-//            if(lastUsed==arr[i]) continue;
+//            if(result[k]==arr[i]) continue;
 //            if(used[i]) continue;
 //
 //            used[i]=true;
-//            lastUsed=arr[i];
-//
 //            result[k]=arr[i];
 //            rec_func2(k+1);
-//            result[k]=-1;
 //
 //            used[i]=false;
 //        }
 //    }
+
+    static void rec_func2(int k){
+        if(k==M+1){
+            for(int i=1; i<result.length; ++i){
+                sb.append(result[i]).append(" ");
+            }
+            sb.append("\n");
+
+            return;
+        }
+
+        int select =-1;
+
+        for(int i=1; i<=N; ++i){
+            if(select==arr[i]) continue;
+            if(used[i]) continue;
+
+            used[i]=true;
+            select=arr[i];
+
+            result[k]=arr[i];
+            rec_func2(k+1);
+            result[k]=-1;
+
+            used[i]=false;
+        }
+    }
     static class FastReader{
         BufferedReader br;
         StringTokenizer st;
