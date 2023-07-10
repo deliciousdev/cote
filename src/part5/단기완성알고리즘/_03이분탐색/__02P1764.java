@@ -3,6 +3,9 @@ package part5.단기완성알고리즘._03이분탐색;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 바이너리를 하기위해서 정렬을 해줘야하고, 사전순으로 출력이 되어야하기 때문에 target들도 정렬을 해주거나, 결과를 정렬해주거나 해줘야함
+ */
 public class __02P1764 {
 
     static FastReader sc = new FastReader();
