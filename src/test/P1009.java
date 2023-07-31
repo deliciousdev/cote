@@ -3,6 +3,9 @@ package test;
 import java.util.*;
 import java.io.*;
 
+/**
+ * (x-1)%MOD +1
+ */
 public class P1009 {
 
     static FastReader sc = new FastReader();
