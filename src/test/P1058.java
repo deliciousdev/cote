@@ -31,6 +31,10 @@ public class P1058 {
                 dp[i][j]=100000;
             }
         }
+        //플로이드워샬에서는 이렇게 해주는것이 정석임( 이거안해도 count()에서 i->i 빼주면 답은 잘 나오긴함)
+        for(int i=1; i<=N; ++i){
+            dp[i][i]=0;
+        }
         for(int i=1; i<=N; ++i){
             String s= sc.next();
             for(int j=1; j<=N; ++j){
