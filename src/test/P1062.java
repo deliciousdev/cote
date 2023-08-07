@@ -5,6 +5,8 @@ import java.io.*;
 
 /**
  * 부르트포스 구현
+ * 일반적인 콤비네이션 말고, visited을 이용한 백트래킹 하면 readable 검색하는것이 시간복잡도 유리
+ * visited를 이용한 콤비네이션 백트래킹 할때 select 도 같이 파라미터로 넘겨줘야 시간초과안뜸.
  */
 public class P1062 {
 
@@ -16,8 +18,74 @@ public class P1062 {
     static char[] selected;
     static Set[] words;
 
+    static String[] wordArr;
+
+    static boolean[] visited=new boolean[26];
     static int ans=Integer.MIN_VALUE;
     public static void main(String[] args){
+//        input1();
+//        solve1();
+
+        input2();
+        solve2();
+
+    }
+    static void input2(){
+        N=sc.nextInt();
+        K=sc.nextInt();
+        if(K <5){
+            System.out.print(0);
+            System.exit(0);
+        }
+
+        wordArr= new String[N];
+        for(int i=0; i<N; ++i){
+            wordArr[i]=sc.next()
+                    .replace("a","").replace("c","")
+                    .replace("i","").replace("n","")
+                    .replace("t","");
+        }
+
+    }
+
+    static void solve2(){
+        visited['a'-'a']=true;
+        visited['c'-'a']=true;
+        visited['i'-'a']=true;
+        visited['n'-'a']=true;
+        visited['t'-'a']=true;
+        backTracking(0,-1);
+        System.out.print(ans);
+    }
+
+    static void backTracking(int k,int select){ //select 없이 visited 으로만 백트래킹 하면 시간초과뜸.
+        if(k== K-5){
+            int readableCnt=0;
+            for(String word: wordArr){
+                boolean readable= true;
+                for(int i=0; i<word.length(); ++i){
+                    char c= word.charAt(i);
+                    if(!visited[c-'a']){
+                        readable=false;
+                        break;
+                    }
+                }
+                if(readable) ++readableCnt;
+            }
+            ans=Math.max(ans,readableCnt);
+            return;
+        }
+
+        for(int i=select+1; i<26; ++i){
+            if(visited[i]) continue;
+
+            visited[i]=true;
+            backTracking(k+1,i);
+            visited[i]=false;
+        }
+    }
+
+    private static void input1() {
         N=sc.nextInt();
         K=sc.nextInt();
         if(K <5){
@@ -39,8 +107,6 @@ public class P1062 {
         }
 
         selected= new char[K-5];
-        solve1();
-
     }
 
     static void solve1(){
@@ -48,6 +114,8 @@ public class P1062 {
         bruteForce_combination(0,'a'-1);
         System.out.print(ans);
     }
+
+
     static void bruteForce_combination(int k, int s){
         if(k== K-5){
             int readableCnt=countReadableWord();
