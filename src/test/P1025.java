@@ -32,6 +32,14 @@ public class P1025 {
             }
         }
 
+//Math.min(N,M)으로 했을때 반례
+// 입력
+//1 7
+//8186898
+
+// 출력
+//961
+
         int ans = Integer.MIN_VALUE;
         for(int num=1; num<=Math.max(N,M); ++num){
 //        for(int num=1; num<=Math.min(N,M); ++num) {//N M 중 하나가 1이면 곤란해짐
