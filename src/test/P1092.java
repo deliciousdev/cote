@@ -85,7 +85,7 @@ public class P1092 {
             ++time;
             for(int i=limit.length-1; i>=0; --i){
                 int j= craneIdx[i];
-                while(j!=-1 && (done[j] || limit[i]<box[j])){
+                while(j>=0 && (done[j] || limit[i]<box[j])){
                     j = --craneIdx[i];
                 }
                 if(j<0) continue;
