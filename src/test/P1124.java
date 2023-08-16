@@ -3,6 +3,9 @@ package test;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 소인수 분해, 소수...에라토스테네스... 오버플로우 조심
+ */
 public class P1124 {
 
     static FastReader sc = new FastReader();
