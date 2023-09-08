@@ -26,20 +26,20 @@ public class P1195 {
         int ans=L1+L2;
 
         for(int i=1; i<=L1; ++i){
-            boolean ok=true;
+            boolean isAllFit=true;
             int compatibleRange=0;
             int idx1=L1-i;
             int idx2=0;
             while(idx1<L1 && idx2<L2){
-                if(!validate(arr1[idx1],arr2[idx2])) {
-                    ok=false;
+                if(!validateFit(arr1[idx1],arr2[idx2])) {
+                    isAllFit=false;
                     break;
                 }
                 ++compatibleRange;
                 ++idx1;
                 ++idx2;
             }
-            if(ok) {
+            if(isAllFit) {
                 int range = L1 + L2 - compatibleRange;
                 ans = Math.min(ans, range);
             }
@@ -50,7 +50,7 @@ public class P1195 {
             int idx1=0;
             int idx2=i;
             while(idx1<L1&&idx2<L2){
-                if(!validate(arr1[idx1],arr2[idx2])) {
+                if(!validateFit(arr1[idx1],arr2[idx2])) {
                     ok=false;
                     break;
                 }
@@ -67,7 +67,7 @@ public class P1195 {
         System.out.print(ans);
     }
 
-    static boolean validate(char e1, char e2){
+    static boolean validateFit(char e1, char e2){
         if(e1=='2'&&e2=='2') return false;
         return true;
     }
