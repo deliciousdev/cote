@@ -6,6 +6,8 @@ import java.io.*;
 /**
  * 수학, 구현, 사칙연산
  * 정해진 포맷으로 문자열읆 만들때 : String.format()
+ * String.split() : 문자를 단위로 파싱할때
+ * 인덱스가 정해져있는 포맷이므로 charAt() 이나 substring()으로 파싱해도됨
  */
 public class _06Q13223_ {
 
@@ -13,18 +15,18 @@ public class _06Q13223_ {
 
     public static void main(String[] args){
 //        solve1();//String.format()
-        solve2(); //String.format() 사용안하고 StringBuilder 로 직접 구현
+        solve2(); //String.format() 사용안하고 StringBuilder 로 직접 구현 , substring() 으로 파싱
     }
 
     static void solve2(){
         String current=sc.next();
         String target= sc.next();
 
-        int currentTotalSecond=convertToSecond(current);
-        int targetTotalSecond= convertToSecond(target);
+        int currentTotalSecond=convertToSecond2(current);
+        int targetTotalSecond= convertToSecond2(target);
 
         if(targetTotalSecond<=currentTotalSecond){
-            targetTotalSecond+=24*60*60;
+            targetTotalSecond+=convertToSecond2("24:00:00");
         }
 
         int requiredTotalSecond=targetTotalSecond-currentTotalSecond;
@@ -83,6 +85,13 @@ public class _06Q13223_ {
 
         int h= temp%60;
         return String.format("%02d:%02d:%02d",h,m,s);
+    }
+
+    static int convertToSecond2(String time){
+        int h=Integer.parseInt(time.substring(0,0+2));
+        int m=Integer.parseInt(time.substring(3,3+2));
+        int s = Integer.parseInt(time.substring(6, 6 + 2));
+        return h*60*60+ m*60 +s;
     }
     static int convertToSecond(String time){
         String[] split = time.split(":");
