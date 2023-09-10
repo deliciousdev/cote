@@ -4,6 +4,8 @@ import java.util.*;
 import java.io.*;
 
 /**
+ * 문자가 주어졌을때 대문자 인지 소문자 인지 판별하기. 소문자를(대문자를) 대문자로(소문자로) 변경하기.
+ *
  * String 은 String.length()
  * 아스키코드 : 대문자 < 소문자
  * Character.toUpperCase()
@@ -42,10 +44,12 @@ public class _02Q2744 {
         for(int i=0; i<s.length(); ++i){
             char c= s.charAt(i);
             if('a'<=c&&c<='z'){
-                c-='a'-'A';
+//                c-='a'-'A';
+                c= (char)(c-'a'+'A'); //소문자 대칭이동 후 대문자 대칭이동
             }
             else{
-                c+='a'-'A';
+//                c+='a'-'A';
+                c=(char)(c-'A'+'a'); //대문자 대칭이동 후 소문자 대칭이동
             }
             sb.append(c);
         }

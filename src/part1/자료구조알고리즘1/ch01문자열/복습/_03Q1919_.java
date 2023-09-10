@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 /**
+ * 구현,문자열
  * 배열에 관한 반복문이 여러개 있다면 같은 반복문안에서 같이 돌릴 수 있음.
  */
 public class _03Q1919_ {

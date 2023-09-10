@@ -5,6 +5,7 @@ import java.io.*;
 
 
 /**
+ * 구현,문자열
  * 문자변환시 대칭이동, Character.toLowerCase, Character.toUpperCase()
  */
 public class _02Q2744_ {
